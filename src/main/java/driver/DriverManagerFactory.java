@@ -1,5 +1,8 @@
 package driver;
 
+import driver.implementation.ChromeDriverManager;
+import driver.implementation.FireFoxDriverManager;
+
 public class DriverManagerFactory {
 
     public static DriverManager getManager(DriverType type) {
@@ -11,10 +14,10 @@ public class DriverManagerFactory {
                 driverManager = new ChromeDriverManager();
                 break;
             case FIREFOX:
-                driverManager = new ChromeDriverManager();
+                driverManager = new FireFoxDriverManager();
                 break;
             default:
-                driverManager = new ChromeDriverManager();
+                driverManager = null;
                 break;
         }
         return driverManager;
