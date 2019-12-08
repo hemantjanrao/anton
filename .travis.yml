@@ -5,6 +5,7 @@ jdk:
   - oraclejdk12
 addons:
   chrome: stable
+  firefox: latest
 before_install:
   - sudo apt-get update
   - sudo apt-get install dbus-x11
