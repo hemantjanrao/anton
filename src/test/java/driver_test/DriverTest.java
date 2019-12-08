@@ -31,7 +31,7 @@ public class DriverTest {
     }
 
     @Test
-    public void launchTestAutomationGuruTest() {
+    public void launchDriver() {
         driver.get("https://www.google.com/");
         Assert.assertEquals("Google", driver.getTitle());
     }
