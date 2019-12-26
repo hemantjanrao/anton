@@ -12,8 +12,7 @@ public class EdgeDriverManager extends DriverManager {
     protected void startService() {
         if (null == edgService) {
             try {
-                edgService = new EdgeDriverService() {
-                };
+                edgService = null;
             }catch(Exception e){
                 e.printStackTrace();
             }

@@ -1,38 +1,40 @@
 package driver_test;
 
 import driver.DriverManager;
-import driver.DriverManagerFactory;
-import driver.DriverType;
+import driver2.ActionType;
+import driver2.DriverFactory;
+import driver2.DriverType;
+import driver2.WebUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class DriverTest {
 
-    DriverManager driverManager;
     WebDriver driver;
-
-    @BeforeTest
-    public void beforeTest(){
-        driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
-    }
 
     @BeforeMethod
     public void beforeMethod(){
-        driver = driverManager.getDriver();
+        driver = DriverFactory.getDriver(DriverType.CHROME);
     }
 
     @AfterMethod
     public void afterMethod() {
-        driverManager.quitDriver();
+        driver.close();
+        driver.quit();
     }
 
     @Test
     public void launchDriver() {
-        driver.get("https://www.google.com/");
-        Assert.assertEquals("Google", driver.getTitle());
+        driver.get("http://automationpractice.com/index.php");
+
+        WebUtils.action(ActionType.CLICK).accept(driver.findElement(By.xpath("//a[@class='login']")));
+
+        WebUtils.waitPageLoad().accept(driver);
+
+        WebUtils.verification(ActionType.DISPLAYED).test(driver.findElement(By.id("email_create")));
     }
 }
