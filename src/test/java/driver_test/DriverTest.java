@@ -7,6 +7,7 @@ import driver2.DriverType;
 import driver2.WebUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,10 +32,20 @@ public class DriverTest {
     public void launchDriver() {
         driver.get("http://automationpractice.com/index.php");
 
-        WebUtils.action(ActionType.CLICK).accept(driver.findElement(By.xpath("//a[@class='login']")));
+        WebUtils.action(ActionType.CLICK)
+                .accept(
+                        driver.findElement(By.xpath("//a[@class='login']")));
 
         WebUtils.waitPageLoad().accept(driver);
 
-        WebUtils.verification(ActionType.DISPLAYED).test(driver.findElement(By.id("email_create")));
+        WebUtils.verification(ActionType.DISPLAYED)
+                .test(driver.findElement(By.id("email_create")));
+
+        WebUtils.interaction(ActionType.FILL)
+                .accept(
+                        driver.findElement(By.id("email_create")),
+                        "hemant@gmail.com");
+
+        WebUtils.action(ActionType.CLICK).accept(driver.findElement(By.id("SubmitCreate")));
     }
 }
