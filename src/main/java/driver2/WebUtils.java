@@ -4,6 +4,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -16,17 +18,18 @@ public class WebUtils {
     /****************************************************************
      * Waits
      ***************************************************************/
-    private static final Consumer<WebDriver> PAGE_LOAD = driver -> {
-        new WebDriverWait(driver, Duration.ofSeconds(120))
-                .until(webDriver -> ((JavascriptExecutor) webDriver)
-                        .executeScript("return document.readyState")
-                        .equals("complete"));
-    };
+    private static final Consumer<WebDriver> PAGE_LOAD = driver -> new WebDriverWait(driver, Duration.ofSeconds(120))
+            .until(webDriver -> ((JavascriptExecutor) webDriver)
+                    .executeScript("return document.readyState")
+                    .equals("complete"));
 
-
-    public static Consumer<WebDriver> waitPageLoad(){
+    public static Consumer<WebDriver> waitForPageLoad(){
         return PAGE_LOAD;
     }
+
+    public static final Function<WebDriver, WebDriverWait> EXPLICIT_WAIT = webDriver ->
+            new WebDriverWait(webDriver, Duration.ofSeconds(120));
+
 
     /**************************************************************
      * Verification
@@ -66,7 +69,7 @@ public class WebUtils {
     }
 
     /****************************************************************
-     * Interaction
+     *Interaction
      ***************************************************************/
     private static final BiConsumer<WebElement, Object> FILL = (element, value) -> {
         DISPLAYED.and(ENABLE).test(element);
@@ -74,10 +77,17 @@ public class WebUtils {
         element.sendKeys(value.toString());
     };
 
+    private static final BiConsumer<WebElement, Object> SELECT_HANDLER = (element, value) -> {
+        DISPLAYED.and(ENABLE).test(element);
+        Select select = new Select(element);
+        select.selectByValue(value.toString());
+    };
+
     private static final Map<ActionType, BiConsumer<WebElement, Object>> INTERACTION_MAP = new HashMap<>();
 
     static{
         INTERACTION_MAP.put(ActionType.FILL, FILL);
+        INTERACTION_MAP.put(ActionType.SELECT, SELECT_HANDLER);
     }
 
     public static BiConsumer<WebElement, Object> interaction(ActionType action) {

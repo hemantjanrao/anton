@@ -1,51 +1,35 @@
 package driver_test;
 
-import driver.DriverManager;
+import base.BaseTest;
 import driver2.ActionType;
-import driver2.DriverFactory;
-import driver2.DriverType;
 import driver2.WebUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
-public class DriverTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void beforeMethod(){
-        driver = DriverFactory.getDriver(DriverType.CHROME);
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        driver.close();
-        driver.quit();
-    }
+public class DriverTest extends BaseTest {
 
     @Test
     public void launchDriver() {
-        driver.get("http://automationpractice.com/index.php");
+        wd.get("http://automationpractice.com/index.php");
 
         WebUtils.action(ActionType.CLICK)
-                .accept(
-                        driver.findElement(By.xpath("//a[@class='login']")));
+                .accept(wd.findElement(By.xpath("//a[@class='login']")));
 
-        WebUtils.waitPageLoad().accept(driver);
+        WebUtils.waitForPageLoad().accept(wd);
 
         WebUtils.verification(ActionType.DISPLAYED)
-                .test(driver.findElement(By.id("email_create")));
+                .test(wd.findElement(By.id("email_create")));
 
         WebUtils.interaction(ActionType.FILL)
-                .accept(
-                        driver.findElement(By.id("email_create")),
+                .accept(wd.findElement(By.id("email_create")),
                         "hemant@gmail.com");
 
-        WebUtils.action(ActionType.CLICK).accept(driver.findElement(By.id("SubmitCreate")));
+        WebUtils.action(ActionType.CLICK).accept(wd.findElement(By.id("SubmitCreate")));
+
+        WebUtils.EXPLICIT_WAIT.apply(wd)
+                .until(ExpectedConditions.visibilityOf(wd.findElement(By.id("days"))));
+
+        WebUtils.interaction(ActionType.SELECT).accept(wd.findElement(By.id("days")), 10);
     }
 }
