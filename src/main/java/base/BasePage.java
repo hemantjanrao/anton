@@ -1,10 +1,13 @@
 package base;
 
+import org.apache.commons.exec.environment.EnvironmentUtils;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utility.Environment;
+import utility.PropertyUtils;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;
@@ -14,7 +17,6 @@ public abstract class BasePage<T extends BasePage> {
     protected FluentWait<WebDriver> fluentWait = null;
     protected WebDriverWait explicitWait= null;
     public abstract String getURL();
-
 
     public BasePage(WebDriver driver) {
         this(driver, false);
@@ -33,17 +35,15 @@ public abstract class BasePage<T extends BasePage> {
 
     public void acceptAlertIfPresent(WebDriver wd) {
         try {
-
             wd.switchTo().alert().accept();
         } catch (NoAlertPresentException ignored) {
             // TODO: handle exception
         }
     }
 
-    /*public T navigateTo() {
-        wd.get(url);
+    public T navigateTo() {
+        wd.get(PropertyUtils.getProperty().appURL());
         acceptAlertIfPresent(wd);
         return (T) this;
-    }*/
-
+    }
 }

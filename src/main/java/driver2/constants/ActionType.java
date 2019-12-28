@@ -1,5 +1,5 @@
 
-package driver2;
+package driver2.constants;
 
 public enum ActionType {
     FILL,

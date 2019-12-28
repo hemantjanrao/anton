@@ -1,32 +1,14 @@
 package driver2;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import driver2.constants.ActionType;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.*;
 
 public class WebUtils {
-
-    /****************************************************************
-     * Waits
-     ***************************************************************//*
-    private static final Consumer<WebDriver> PAGE_LOAD = driver -> new WebDriverWait(driver, Duration.ofSeconds(120))
-            .until(webDriver -> ((JavascriptExecutor) webDriver)
-                    .executeScript("return document.readyState")
-                    .equals("complete"));
-
-    public static Consumer<WebDriver> waitForPageLoad(){
-        return PAGE_LOAD;
-    }
-*/
 
     /**************************************************************
      * Verification

@@ -2,11 +2,13 @@ package base;
 
 
 import driver2.DriverFactory;
-import driver2.DriverType;
+import driver2.constants.DriverType;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utility.Environment;
 
 import java.lang.reflect.Method;
 
@@ -14,15 +16,23 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class BaseTest{
     protected WebDriver wd = null;
+    //public static Environment testEnvironment;
 
+    /*@BeforeTest
+    public void beforeTest(){
+        try{
+            testEnvironment = ConfigFactory.create(Environment.class);
+
+        }catch(Exception ignored){}
+    }*/
     @BeforeClass(alwaysRun = true)
     public void initializeDriver() {
         try {
             wd = DriverFactory.getDriver(DriverType.CHROME);
             wd.manage().timeouts().pageLoadTimeout(60, SECONDS);
             wd.manage().timeouts().implicitlyWait(10, SECONDS);
-            System.setProperty("webdriver.timeouts.implicitlywait", "30");
             wd.manage().window().maximize();
+
         } catch (Exception e) {
             Assert.fail("Error creating driver", e);
         }
@@ -47,7 +57,6 @@ public class BaseTest{
 
         System.out.println("Starting the After class of 'Base Test'");
     }
-
 
     @BeforeMethod(alwaysRun = true)
     public void logStartMethod(Method testMethod) {
