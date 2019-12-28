@@ -10,6 +10,7 @@ public class PropertyUtils {
         try {
             testEnvironment = ConfigFactory.create(Environment.class);
         } catch (Exception ignored) {
+            System.out.println("Environment file missing, please check");
         }
     }
 
