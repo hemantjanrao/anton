@@ -17,7 +17,7 @@ public class WebUtils {
 
     /****************************************************************
      * Waits
-     ***************************************************************/
+     ***************************************************************//*
     private static final Consumer<WebDriver> PAGE_LOAD = driver -> new WebDriverWait(driver, Duration.ofSeconds(120))
             .until(webDriver -> ((JavascriptExecutor) webDriver)
                     .executeScript("return document.readyState")
@@ -26,10 +26,7 @@ public class WebUtils {
     public static Consumer<WebDriver> waitForPageLoad(){
         return PAGE_LOAD;
     }
-
-    public static final Function<WebDriver, WebDriverWait> EXPLICIT_WAIT = webDriver ->
-            new WebDriverWait(webDriver, Duration.ofSeconds(120));
-
+*/
 
     /**************************************************************
      * Verification
