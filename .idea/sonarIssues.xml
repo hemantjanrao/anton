@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/Downloads/qa-test-hf_1.3/qa-test-hf/docker-compose.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/Downloads/qa-test-hf_1.3/qa-test-hf/src/test/java/com/ui/framework/tests/ui/RegisterTest.java">
           <value>
             <set />
@@ -43,6 +48,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/.travis.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Dockerfile">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/QA.properties">
           <value>
             <set />
@@ -59,6 +79,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/anton.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/docker-compose">
           <value>
             <set />
           </value>
@@ -124,6 +149,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/pages/PropertyUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/testng.xml">
           <value>
             <set />
           </value>

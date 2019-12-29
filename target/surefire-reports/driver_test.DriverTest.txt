@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: driver_test.DriverTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 25.931 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.312 s - in driver_test.DriverTest
